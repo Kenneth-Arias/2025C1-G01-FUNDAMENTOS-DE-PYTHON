@@ -19,7 +19,7 @@ if input("Desea agregar o modificar el inventario? SI o NO? ").upper == "SI":
             producto[1] += cantidadN
             break
 
-for cantidad in inventario:
+for producto, cantidad in inventario:
         if cantidad >= 50:
             (f"OVERSTOCK: {producto} tiene {cantidad} unidades.")
         elif cantidad < 10:
