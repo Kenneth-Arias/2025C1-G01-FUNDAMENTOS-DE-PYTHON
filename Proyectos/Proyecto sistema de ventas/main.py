@@ -6,7 +6,7 @@ Sistema de Gestion de Ventas nos permita.
 """
 
 import os    
-from modulo import ingresar_ventas
+from modulo import ingresar_ventas, guardar_ventas, analisis_ventas
 
 def limpiar_pantalla():
     """Limpia la pantalla de la terminal en ejecución"""
@@ -32,13 +32,16 @@ def menu():
         if opcion == "1":
             print('\n ---- Ingresar ventas de cursos UMCA ----')
             ingresar_ventas(ventas)
-            print(ventas)
+            print(*ventas)
             pausar()
         elif opcion == "2":
             print('\n ---- Guardar datos en un archivo CSV ----')
+            guardar_ventas(ventas)
             pausar()
         elif opcion == "3":
+            limpiar_pantalla()
             print('\n ---- Analsis de datos ----')
+            analisis_ventas(ventas)
             pausar()
         elif opcion == "4":
             print('\nGracias por usar el sistema. Hasta pronto')
