@@ -41,7 +41,7 @@ def menu():
         elif opcion == "3":
             limpiar_pantalla()
             print('\n ---- Analsis de datos ----')
-            analisis_ventas(ventas)
+            analisis_ventas()
             pausar()
         elif opcion == "4":
             print('\nGracias por usar el sistema. Hasta pronto')
