@@ -38,9 +38,9 @@ def menu():
             print('\n ---- Guardar datos en un archivo CSV ----')
             guardar_ventas(ventas)
             pausar()
-        elif opcion == "3":
+        elif opcion == '3':
             limpiar_pantalla()
-            print('\n ---- Analsis de datos ----')
+            print('\n ---- Analisis de Ventas ----')
             analisis_ventas()
             pausar()
         elif opcion == "4":

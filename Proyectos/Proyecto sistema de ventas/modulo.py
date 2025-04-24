@@ -52,13 +52,13 @@ def guardar_ventas(ventas):
         
 def analisis_ventas():
     df = pd.read_csv('ventas.csv')
-    print('\n--------------- RESUMEN DE VENTAS ---------------')
+    print('\n----------------- RESUMEN VENTAS -----------------')
     
     df['subtotal'] = df['cantidad'] * df['precio']
-    total_ingresos = df['subtotal'].sum
+    total_ingresos = df['subtotal'].sum()
     #Total de ventas
     print(f'TOTAL de ventas {total_ingresos:.2f}')
     
-    #Curso mas vebdido
+    #Curso mas vendido
     curso_top = df.groupby('curso')['cantidad'].sum().idxmax()
-    print('El curso mas vendido es: ', curso_top)
+    print('El curso mas vendido es : ', curso_top)
