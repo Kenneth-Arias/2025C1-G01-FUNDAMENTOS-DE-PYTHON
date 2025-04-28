@@ -10,7 +10,7 @@ from modulo import agregar_movimiento, guardar_movimientos
 
 #Funciones
 def pause():
-    input("Presione ENTER para continuar...")
+    input("\nPresione ENTER para continuar...")
     
 
 def limpiar_pantalla():
@@ -46,7 +46,7 @@ def menu():
             pause()
 
         elif opcion == "4":
-            print('Muchas gracias por usar el programa!!')
+            print('\nMuchas gracias por usar el programa!!')
             pause()
             break
         
@@ -55,7 +55,6 @@ def menu():
             pause()
             
             
-if __name__ == '__proyecto__':
-    print('Bienvenido la sistema de gestion de ventas')
+if __name__ == '__main__':
     pause()
     menu()
