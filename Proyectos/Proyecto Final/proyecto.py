@@ -5,12 +5,12 @@
 import os
 import pandas as pd
 
-from modulo import ingresar_herramientas
+from modulo import agregar_movimiento, guardar_movimientos
 
 
-#Funciones y variables 
+#Funciones
 def pause():
-    input("Presione cualquier tecla para continuar...")
+    input("Presione ENTER para continuar...")
     
 
 def limpiar_pantalla():
@@ -19,35 +19,43 @@ def limpiar_pantalla():
     
 
 #Menú principal
-print("\nBienvenido al Sistema de organizacion de Inventario")
+def menu():
+    print("\nBienvenido al Sistema de organizacion de Inventario")
+    
+    #Variables del sistema
+    movimientos = []
+    
+    while(True):
+        print('\n--- Sistema de Inventario de Ferretería ---')
+        print('1. Agregar movimientos a la memoria')
+        print('2. Guardar datos en un archivo CSV')
+        print('3. Analizar los datos')
+        print('4. Salir')
+        opcion = input('Ingrese una opción: ')
 
-while(True):
-    print('\n-------- MENÚ PRINCIPAL --------')
-    print('1. Ingresar Herramientas')
-    print('2. Venta de Herramientas')
-    print('3. Guardar datos en un archivo CSV')
-    print('4. Analizar los datos')
-    print('5. Salir')
-    opcion = input('Ingrese una opción: ')
-    
-    if opcion == "1":
-        ingresar_herramientas()
-        pause()
+        if opcion == "1":
+            agregar_movimiento(movimientos)
+            print(*movimientos)
+            pause()
+
+        elif opcion == "2":
+            guardar_movimientos(movimientos)
+            pause()
+
+        elif opcion == "3":
+            pause()
+
+        elif opcion == "4":
+            print('Muchas gracias por usar el programa!!')
+            pause()
+            break
         
-    elif opcion == "2":
-        pause()
-        
-    elif opcion == "3":
-        pause()
-        
-    elif opcion == "4":
-        pause()
-        
-    elif opcion == "5":
-        print('Muchas gracias por usar el programa!!')
-        pause()
-        break
-    
-    else:
-        print('Opcion no valida, vuelva a intenterlo')
-        pause()
+        else:
+            print('Opcion no valida, vuelva a intenterlo')
+            pause()
+            
+            
+if __name__ == '__proyecto__':
+    print('Bienvenido la sistema de gestion de ventas')
+    pause()
+    menu()
