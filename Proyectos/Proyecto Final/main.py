@@ -34,11 +34,13 @@ def menu():
         opcion = input('Ingrese una opción: ')
 
         if opcion == "1":
+            print('\n------ Agregando movimiento ------')
             agregar_movimiento(movimientos)
             print(*movimientos)
             pause()
 
         elif opcion == "2":
+            print('\n---- Guardar datos en un archivo CSV ----')
             guardar_movimientos(movimientos)
             pause()
 
@@ -56,5 +58,6 @@ def menu():
             
             
 if __name__ == '__main__':
+    limpiar_pantalla()
     pause()
     menu()
