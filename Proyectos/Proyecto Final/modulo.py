@@ -9,7 +9,7 @@ def agregar_movimiento(lista_herramientas):
             if movimiento not in ['entrada', 'salida']:
                 print("Movimiento inválido. Usa 'entrada' o 'salida'.")
                 continue
-            cantidad = int(input('Ingrese la cantidad de productos vendidos: '))
+            cantidad = int(input('Ingrese la cantidad: '))
             fecha = input('Íngrese la fecha de ingreso del producto (AAAA-MM-DD): ')
             precio = float(input('Íngrese el precio del producto: '))
         except ValueError:  
@@ -42,10 +42,13 @@ def guardar_movimientos(movimientos):
         if os.path.exists('ventas.csv'):
             #si el archivo existe agrego Append  'A'
             with open('movimientos.csv','a',newline='',encoding='utf-8') as archivo:
-                guardar = csv.DictWriter(archivo,fieldnames=['Herramienta','Movimiento','Cantidad','Precio','Fecha'])
+                guardar = csv.DictWriter(archivo,fieldnames=['herramienta','movimiento','cantidad','precio','fecha'])
                 guardar.writerows(movimientos)        
         else: #Si no existe abro en modo escritura 'W'
             with open('movimientos.csv','w',newline='',encoding='utf-8') as archivo:
-                guardar = csv.DictWriter(archivo,fieldnames=['Herramienta','Movimiento','Cantidad','Precio','Fecha'])
+                guardar = csv.DictWriter(archivo,fieldnames=['herramienta','movimiento','cantidad','precio','fecha'])
                 guardar.writeheader()
                 guardar.writerows(movimientos)
+                
+        movimientos = []
+        print('\nDatos guardados exitosamente!')
