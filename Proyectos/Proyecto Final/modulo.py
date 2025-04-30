@@ -6,22 +6,20 @@ def agregar_movimiento(lista_herramientas):
         try: 
             herramienta = input('\nÍngrese el nombre del producto: ').upper()
             movimiento = input("¿Entrada o salida? (entrada/salida): ").strip().lower()
-            if movimiento not in ['entrada', 'salida']:
-                print("Movimiento inválido. Usa 'entrada' o 'salida'.")
-                continue
             cantidad = int(input('Ingrese la cantidad: '))
             fecha = input('Íngrese la fecha de ingreso del producto (AAAA-MM-DD): ')
             precio = float(input('Íngrese el precio del producto: '))
+            cliente = input('Ingrese el nombre del cliente: ')
         except ValueError:  
             print('Entradas no validas, por favor intetenlo nuevamente!')
             continue
     
         memoria = {
             'herramienta' : herramienta,
-            'movimiento' : movimiento,
             'cantidad' : cantidad,
             'precio' : precio,
             'fecha' : fecha,
+            'cliente' : cliente
         }
          
         lista_herramientas.append(memoria)
@@ -42,13 +40,37 @@ def guardar_movimientos(movimientos):
         if os.path.exists('ventas.csv'):
             #si el archivo existe agrego Append  'A'
             with open('movimientos.csv','a',newline='',encoding='utf-8') as archivo:
-                guardar = csv.DictWriter(archivo,fieldnames=['herramienta','movimiento','cantidad','precio','fecha'])
+                guardar = csv.DictWriter(archivo,fieldnames=['herramienta','cantidad','precio','fecha', 'cliente'])
                 guardar.writerows(movimientos)        
         else: #Si no existe abro en modo escritura 'W'
             with open('movimientos.csv','w',newline='',encoding='utf-8') as archivo:
-                guardar = csv.DictWriter(archivo,fieldnames=['herramienta','movimiento','cantidad','precio','fecha'])
+                guardar = csv.DictWriter(archivo,fieldnames=['herramienta','cantidad','precio','fecha', 'cliente'])
                 guardar.writeheader()
                 guardar.writerows(movimientos)
                 
         movimientos = []
         print('\nDatos guardados exitosamente!')
+        
+def analisis_movimientos():
+    df = pd.read_csv('movimientos.csv')
+    reader = csv.DictReader('movimentos.csv')
+    print('\n----------------- RESUMEN VENTAS -----------------')
+    
+    #Total de ventas
+    df['subtotal'] = df['cantidad'] * df['precio']
+    total_ingresos = df['subtotal'].sum()
+    
+    print(f'TOTAL de ventas {total_ingresos:.2f}')
+    
+    #Herramienta más vendida
+    herramienta_top = df.groupby('herramienta')['cantidad'].sum().idxmax()
+    print('El curso mas vendido es : ', herramienta_top)
+    
+    #Mejor cliente
+    cliente_top = df.groupby('cliente')['cantidad'].sum().idxmax()  
+    print(f'3. Cliente con más compras: {cliente_top}')
+    
+    ventas_por_fecha = df.groupby('fecha')['subtotal'].sum()
+    print('\n----------------- VENTAS POR FECHA -----------------')
+    print(ventas_por_fecha)
+    

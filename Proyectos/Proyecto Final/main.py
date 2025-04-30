@@ -5,7 +5,7 @@
 import os
 import pandas as pd
 
-from modulo import agregar_movimiento, guardar_movimientos
+from modulo import agregar_movimiento, guardar_movimientos, analisis_movimientos
 
 
 #Funciones
@@ -45,6 +45,8 @@ def menu():
             pause()
 
         elif opcion == "3":
+            limpiar_pantalla()
+            analisis_movimientos()
             pause()
 
         elif opcion == "4":
