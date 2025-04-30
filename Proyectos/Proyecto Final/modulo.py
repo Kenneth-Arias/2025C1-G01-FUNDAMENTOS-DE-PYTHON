@@ -2,6 +2,7 @@ import pandas as pd
 import csv, os
 
 def agregar_movimiento(lista_herramientas):
+    #Leer los datos
     while True:
         try: 
             herramienta = input('\nÍngrese el nombre del producto: ').upper()
@@ -32,7 +33,9 @@ def agregar_movimiento(lista_herramientas):
             break
         else: 
             print ('Opción no valida')
-            
+
+#Guardar archivo
+
 def guardar_movimientos(movimientos):
     if not movimientos:
         print('No hay movimientos que guardar en el CSV')
@@ -51,6 +54,8 @@ def guardar_movimientos(movimientos):
         movimientos = []
         print('\nDatos guardados exitosamente!')
         
+#Analisis de Ventas        
+  
 def analisis_movimientos():
     df = pd.read_csv('movimientos.csv')
     reader = csv.DictReader('movimentos.csv')
@@ -70,6 +75,7 @@ def analisis_movimientos():
     cliente_top = df.groupby('cliente')['cantidad'].sum().idxmax()  
     print(f'3. Cliente con más compras: {cliente_top}')
     
+    #Ventas por fecha
     ventas_por_fecha = df.groupby('fecha')['subtotal'].sum()
     print('\n----------------- VENTAS POR FECHA -----------------')
     print(ventas_por_fecha)
