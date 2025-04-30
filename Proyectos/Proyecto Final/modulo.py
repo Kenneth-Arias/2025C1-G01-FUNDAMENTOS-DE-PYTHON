@@ -60,11 +60,11 @@ def analisis_movimientos():
     df['subtotal'] = df['cantidad'] * df['precio']
     total_ingresos = df['subtotal'].sum()
     
-    print(f'TOTAL de ventas {total_ingresos:.2f}')
+    print(f'\n1. TOTAL de ventas {total_ingresos:.2f}')
     
     #Herramienta más vendida
     herramienta_top = df.groupby('herramienta')['cantidad'].sum().idxmax()
-    print('El curso mas vendido es : ', herramienta_top)
+    print('2. La herramienta más vendida es : ', herramienta_top)
     
     #Mejor cliente
     cliente_top = df.groupby('cliente')['cantidad'].sum().idxmax()  
